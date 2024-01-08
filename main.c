@@ -4,17 +4,14 @@
 
 int main(int argc, char *argv[]) {
 	
-	int term_number;
-	
-	printf("Enter the term number: ");
-	scanf("%d",&term_number);
+	int term_number = 3;
 	
 	float terms[term_number];
 	
 	int i;
 	
 	for(i = 0 ; i < term_number ; i++){
-		printf("Enter the %d term: ",i + 1);
+		printf("Enter the %d. term: ",i + 1);
 		scanf("%f", &terms[i]);
 	}
 	
@@ -44,19 +41,29 @@ int main(int argc, char *argv[]) {
 	
 	printf("\n\n");
 	
-	printf("The equation of tangent: ");
+	float slope;
 	
 	for(i = 0, j = term_number - 2 ; i < term_number, j >= 0 ; i++, j--){
-		terms[i] = terms[i]*(j + 1);
-		
-		if(j == 0){
-			printf("%.1f", terms[i]);
-		}
-		
-		else{
-		printf("%.1fx^%d + ", terms[i], j);
-		}
+		terms[i] = terms[i] * (j + 1);
+		slope = slope + terms[i] * pow(tangent_x_point, j);
 	}
+	
+	float n;
+	
+	n = tangent_y_point - slope * tangent_x_point;
+	
+	if(n == 0){
+		printf("%.1fx", slope); 
+	}
+	else if(slope == 0){
+		printf("%.1f", n); 
+	}
+	else{
+		printf("%.1fx + %.1f", slope, n); 
+	}
+	
+	
+	
 	
 	
 	return 0;
